@@ -3,7 +3,6 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      // A product belongs to a user
       Product.belongsTo(models.User, { foreignKey: "userId", as: "user" });
     }
   }
@@ -19,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       userId: {
-        type: DataTypes.STRING, // Foreign key to match the User's primary key type
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

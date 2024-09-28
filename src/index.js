@@ -4,6 +4,9 @@ const app = express();
 app.use(express.json());
 
 const UserRouter = require("./router/user.router");
+const ProductRouter = require("./router/product.router");
+
+app.use(ProductRouter);
 app.use(UserRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
