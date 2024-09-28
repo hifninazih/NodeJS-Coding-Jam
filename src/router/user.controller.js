@@ -1,14 +1,15 @@
-const { User } = require("./../models/index");
+const { User } = require("./../models");
 
 module.exports = {
   get: async (req, res) => {
+    const users = await User.findAll()
+      .then((data) => data)
+      .catch((err) => console.log(err));
     try {
-      const user = await User.findAll().then((data) => {
-        console.log(data);
-      });
       res.status(200).send({
         message: "Get User",
-        data: user,
+        status: 200,
+        data: users,
       });
     } catch (error) {
       console.log(error);
