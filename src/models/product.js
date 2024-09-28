@@ -1,35 +1,33 @@
 "use strict";
 const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Product extends Model {
     static associate(models) {
-      // A user can have many products
-      User.hasMany(models.Product, { foreignKey: "userId", as: "products" });
+      // A product belongs to a user
+      Product.belongsTo(models.User, { foreignKey: "userId", as: "user" });
     }
   }
 
-  User.init(
+  Product.init(
     {
-      id: {
-        type: DataTypes.STRING,
-        primaryKey: true, // Set the ID as primary key
-        allowNull: false,
-      },
-      firstName: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastName: {
+      description: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.STRING, // Foreign key to match the User's primary key type
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "Product",
     }
   );
 
-  return User;
+  return Product;
 };

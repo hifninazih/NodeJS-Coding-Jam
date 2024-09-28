@@ -7,7 +7,7 @@ module.exports = {
       .catch((err) => console.log(err));
     try {
       res.status(200).send({
-        message: "Get User",
+        message: "Menampilkan data user",
         status: 200,
         data: users,
       });
