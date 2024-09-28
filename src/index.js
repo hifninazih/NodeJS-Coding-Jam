@@ -1,9 +1,12 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+app.use(express.json());
 
 const UserRouter = require("./router/user.router");
-
 app.use(UserRouter);
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Create a local server to receive data from
 app.get("/", (req, res) => {
